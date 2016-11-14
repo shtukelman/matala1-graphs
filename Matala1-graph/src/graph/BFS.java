@@ -121,6 +121,7 @@ public class BFS {
 		for (int i = 0; i < longestDist.size(); i++) {
 			if (longestDist.get(i) == rad){
 				indexAndRadius[j++] = i;
+				if(j==1) break;
 			}
 		}
 		indexAndRadius[2] = rad;

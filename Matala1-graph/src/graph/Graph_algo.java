@@ -129,10 +129,15 @@ public class Graph_algo {
 		edge_number=Integer.parseInt(line=br.readLine());		//read num of edges
 		
 		Vertex[] vs=new Vertex[vertex_number];		//vertex array	
+		
+		ArrayList<Integer>[] Graph = new ArrayList[vertex_number];
 		for (int i = 0; i < vertex_number; i++) {
 			vs[i]=new Vertex(i,infinity);
 			vs[i].edges=new ArrayList<>();
+			Graph[i] = new ArrayList<Integer>();
+			
 		}
+		
 		
 		//read the file text and fill in the array
 		while((line = br.readLine()) != null)
@@ -142,26 +147,34 @@ public class Graph_algo {
 			double weight=Double.parseDouble(st.nextToken());
 			vs[v1].edges.add(new Edge(v2,weight));
 			vs[v2].edges.add(new Edge(v1,weight));
+			
+			Graph[v1].add(v2);
+			Graph[v2].add(v1);
 		}
 		br.close();
 
 		//run dijkstra algo
-		for (int i = 0; i < vs.length; i++) {
-			for (int j = 0; j < vs[i].edges.size(); j++) {
-				System.out.print(vs[i].edges.get(j)+" ");
-			}
-			System.out.println();
-		}
+
 		Graph_algo ds = new Graph_algo(vs,5);	
+		BFS myBFS = new BFS(Graph);
+		int[] diam = myBFS.diameter();
+		int[] radius = myBFS.radius();
+		
 		ds.computePaths();
 		
 		long endTime   = System.currentTimeMillis();
 		long totalTime = endTime - startTime;
 		System.out.println(totalTime+" ms");
 		
+ for (int i = 0; i < radius.length; i++) {
+	for (int j = 0; j < radius.length; j++) {
+		
+	}
+}	
 		ds.printWeights();
 		ds.printPaths();
-		
+		System.out.println("diameter: "+diam[2] +", path: "+diam[0]+"->"+diam[1]);
+		System.out.println("radius: "+radius[2] +", path: "+radius[0]+"->"+radius[1]);
  
 		
 	}
