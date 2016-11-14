@@ -92,4 +92,7 @@ public class Graph {
 	public Vertex[] getVertexGraph(){
 		return this.vs;
 	}
+	public boolean isTriangleInequality(){
+		return myDijkstra.isTriangleInequality();
+	}
 }
