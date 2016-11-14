@@ -1,60 +1,25 @@
 package graph;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+
+
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 
 //https://github.com/PeterStampfli/readWriteText.git
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
-		String inPath = "C://Users//Shtukel//Desktop//לימודים//אריאל//שנה 3//סימסטר א//מבנה תוכנה//G0.txt";
-		String outPath = "C://Users//Shtukel//Desktop//לימודים//אריאל//שנה 3//סימסטר א//מבנה תוכנה//new.txt";
-		String ans = readTextFile(inPath);
-		System.out.println(ans);
-		writeTextFile(outPath, ans);
 
+		Graph myGraph = new Graph("G0.txt");
+		myGraph.printPaths();
+		myGraph.printWeights(); 
+		int v = 5;
+		System.out.println("path to "+v+": "+ myGraph.getPath(v));
+		int[]diam = myGraph.getDiameterWithVertexs();
+		System.out.println("diameter: "+diam[2] +", vertex1: "+diam[1]+", vertex2: "+diam[0]);
+		
+		int[] radius = myGraph.getRadiusWithVertex();
+ 		System.out.println("radius: "+radius[1] +", vertex: "+radius[0]);   	
 	}
-
-	public static String readTextFile(String inPath) {
-
-		Path path = Paths.get(inPath);
-		String line = null;
-		String ans = "";
-		try {
-			BufferedReader reader = Files.newBufferedReader(path);
-			while ((line = reader.readLine()) != null) {
-				// do something with the line
-				// System.out.println(line);
-				ans += line + "\n";
-
-			}
-			reader.close();
-
-		} catch (IOException ex) {
-			ex.printStackTrace(System.out);
-		}
-		return ans;
-
-	}
-
-	public static void writeTextFile(String outPath, String ans) {
-
-		Path path = Paths.get(outPath);
-		try {
-			BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.CREATE);
-			writer.write(ans);
-			writer.close();
-
-		} catch (IOException ex) {
-			ex.printStackTrace(System.out);
-		}
-	}
-
 }

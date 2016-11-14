@@ -144,23 +144,5 @@ public class BFS {
 	 
 		return distance;
 	}	
-	public static void main(String[] args) {
-		ArrayList<Integer>[] graph = new ArrayList[7];
-		for (int i = 0; i < graph.length; i++) {
-			graph[i] = new ArrayList<>();
-		}
-		
-		graph[0].add(1);
-		graph[1].add(0);graph[1].add(2);
-		graph[2].add(1);graph[2].add(3);
-		graph[3].add(2);graph[3].add(4);graph[3].add(6); 
-		graph[4].add(3);graph[4].add(5); 
-		graph[5].add(4);
-		graph[6].add(3);  
-		
-		BFS Gb = new BFS(graph);
-		
-		System.out.println("dem = "+ Arrays.toString(Gb.diameter()));
-		System.out.println("rad = "+ Arrays.toString(Gb.radius()));
-	}
+ 
 }
