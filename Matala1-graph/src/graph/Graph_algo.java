@@ -38,6 +38,9 @@ class Edge{
 		vert = v; 
 		weight = w; 
 	}
+	public String toString(){
+		return ""+vert;
+	}
 }
 
 public class Graph_algo {
@@ -57,8 +60,10 @@ public class Graph_algo {
 		s.dist = 0.;
 		HeapMin Q = new HeapMin();
 		Q.minHeapInsert(s);
-		for (int i=1; i<vertices.length; i++){
+		for (int i=0; i<vertices.length; i++){
+			if (i!=source){
 			Q.minHeapInsert(vertices[i]);
+			}
 		}
 		while (!Q.isEmpty()) {
 			Vertex u = Q.heapExtractMin();
@@ -141,7 +146,13 @@ public class Graph_algo {
 		br.close();
 
 		//run dijkstra algo
-		Graph_algo ds = new Graph_algo(vs,0);	
+		for (int i = 0; i < vs.length; i++) {
+			for (int j = 0; j < vs[i].edges.size(); j++) {
+				System.out.print(vs[i].edges.get(j)+" ");
+			}
+			System.out.println();
+		}
+		Graph_algo ds = new Graph_algo(vs,5);	
 		ds.computePaths();
 		
 		long endTime   = System.currentTimeMillis();
@@ -150,5 +161,8 @@ public class Graph_algo {
 		
 		ds.printWeights();
 		ds.printPaths();
+		
+ 
+		
 	}
 }
