@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Dijkstra {
 	private Vertex[] vertices;
 	private int source;
+	private boolean TriangleInequality = true;
 	private static double infinity = Double.POSITIVE_INFINITY;
 
 	public Dijkstra(Vertex[] vs) {
@@ -34,6 +35,9 @@ public class Dijkstra {
 				Vertex v = vertices[e.vert];
 				if (!v.visited) {
 					double distU = u.dist + e.weight;
+					if (distU <= v.dist && v.dist!=infinity){
+						TriangleInequality = false;
+					}
 					if (distU < v.dist) {// relaxation
 						v.dist = distU;
 						v.previous = vertices[u.name].name;
@@ -46,16 +50,10 @@ public class Dijkstra {
 	}
 
 	public boolean isTriangleInequality() {
-		for (int k = 0; k < vertices.length; k++) {
-			for (int i = 0; i < vertices[k].edges.size(); i++) {
-				for (int j = 0; j < vertices[k].edges.size(); j++) {
-					if (vertices[i].edges.get(j).weight >= vertices[i].edges.get(k).weight + vertices[k].edges.get(j).weight){
-						return false;
-					}
-				}
-			}
+		for (int i = 0; i < vertices.length; i++) {
+		computePaths(i);
 		}
-		return true;
+		return TriangleInequality;
 
 	}
 
