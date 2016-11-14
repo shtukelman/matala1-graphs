@@ -14,13 +14,13 @@ public class Graph {
 	private int vertex_number, edge_number;
 	private Vertex[] vs;
 	private ArrayList<Integer>[] regGraph;
-
+    private String path;
 	private Dijkstra myDijkstra;
 	private BFS myBFS;
 
 	public Graph(String path) throws IOException {
-
-		readFileToGraph(path);
+		this.path = path;
+		readFileToGraph();
 		
 	}
 
@@ -45,7 +45,7 @@ public class Graph {
 	public int[] getRadiusWithVertex(){
 		return myBFS.radius();
 	}
-	private void readFileToGraph(String path) throws IOException {
+	private void readFileToGraph() throws IOException {
 		String line;
 		StringTokenizer st;
 		BufferedReader br;
@@ -84,5 +84,12 @@ public class Graph {
 
 	private static int StringToInt(String s) {
 		return Integer.parseInt(s);
+	}
+	
+	public ArrayList<Integer>[] getArrayListGraph(){
+		return this.regGraph;
+	}
+	public Vertex[] getVertexGraph(){
+		return this.vs;
 	}
 }
