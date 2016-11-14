@@ -8,7 +8,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  * Complexity: O(|V|+|E|)
  */
 public class BFS {
-	public static final int white = 0 , gray = 1, black = 2;
+	private static final int white = 0 , gray = 1, black = 2;
 	private int[] color, dist, pred;
 	private ArrayList<Integer>[] graph;
 	private ArrayBlockingQueue<Integer> queue;

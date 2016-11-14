@@ -7,20 +7,22 @@ import java.util.ArrayList;
 
 
 public class Dijkstra {
-	Vertex[] vertices;
-	int source;
-	public static double infinity = Double.POSITIVE_INFINITY;
-	public Dijkstra(Vertex[] vs, int source){
-		this.source = source;
+	private Vertex[] vertices;
+	private int source;
+	private static double infinity = Double.POSITIVE_INFINITY;
+	
+	public Dijkstra(Vertex[] vs){
+		
 		vertices = new Vertex[vs.length];
 		for (int i=0; i<vs.length; i++){
 			vertices[i] = vs[i];
 		}
 	}
 
-	public void computePaths(){
+	public void computePaths(int source){
+		this.source = source;
 		Vertex s = vertices[source];
-		s.dist = 0.;
+		s.dist = 0;
 		HeapMin Q = new HeapMin();
 		Q.minHeapInsert(s);
 		for (int i=0; i<vertices.length; i++){

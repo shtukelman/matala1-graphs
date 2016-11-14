@@ -21,9 +21,12 @@ public class Graph {
 	public Graph(String path) throws IOException {
 
 		readFileToGraph(path);
-		myDijkstra.computePaths();
+		
 	}
 
+	public void computePaths(int v){
+		myDijkstra.computePaths(v);
+	}
 	public void printWeights() {
 		myDijkstra.printWeights();
 	}
@@ -75,7 +78,7 @@ public class Graph {
 		}
 		br.close();
 
-		myDijkstra = new Dijkstra(vs, 0);
+		myDijkstra = new Dijkstra(vs);
 		myBFS = new BFS(regGraph);
 	}
 

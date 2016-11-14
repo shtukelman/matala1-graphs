@@ -12,9 +12,11 @@ public class Main {
 
 
 		Graph myGraph = new Graph("G0.txt");
+		myGraph.computePaths(5);
 		myGraph.printPaths();
 		myGraph.printWeights(); 
 		int v = 5;
+		
 		System.out.println("path to "+v+": "+ myGraph.getPath(v));
 		int[]diam = myGraph.getDiameterWithVertexs();
 		System.out.println("diameter: "+diam[2] +", vertex1: "+diam[1]+", vertex2: "+diam[0]);
