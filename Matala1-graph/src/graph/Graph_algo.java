@@ -166,15 +166,11 @@ public class Graph_algo {
 		long totalTime = endTime - startTime;
 		System.out.println(totalTime+" ms");
 		
- for (int i = 0; i < radius.length; i++) {
-	for (int j = 0; j < radius.length; j++) {
-		
-	}
-}	
+ 
 		ds.printWeights();
 		ds.printPaths();
-		System.out.println("diameter: "+diam[2] +", path: "+diam[0]+"->"+diam[1]);
-		System.out.println("radius: "+radius[2] +", path: "+radius[0]+"->"+radius[1]);
+		System.out.println("diameter: "+diam[2] +", vertex1: "+diam[1]+", vertex2: "+diam[0]);
+		System.out.println("radius: "+radius[1] +", vertex: "+radius[0]);
  
 		
 	}

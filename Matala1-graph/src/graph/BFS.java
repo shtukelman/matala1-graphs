@@ -99,32 +99,29 @@ public class BFS {
 
 	public int[] radius(){
 		int rad=Integer.MAX_VALUE; 
-		int[] indexAndRadius = {-1,-1,-1};
+		int[] indexAndRadius = {-1,-1};
 		if (size < 2) return indexAndRadius;
 		if (size == 2) {
 			indexAndRadius[0] = 0;
 			indexAndRadius[1] = 1;
-			indexAndRadius[2] = 1;
 			return indexAndRadius;			
 		}
 		ArrayList<Integer> longestDist = new ArrayList<>();
+		ArrayList<Integer> longestDistIndex = new ArrayList<>();
 		for (int i = 0; i < graph.length; i++) {
 			AlgoBFS(i);
-			longestDist.add(maxDist());			
+			longestDist.add(maxDist());
+			longestDistIndex.add(i);
 		}
 		for (int i = 0; i < longestDist.size(); i++) {
 			if (longestDist.get(i) < rad) {
 				rad = longestDist.get(i);
+				indexAndRadius[0] = longestDistIndex.get(i);
 			}
 		}
-		int j=0;
-		for (int i = 0; i < longestDist.size(); i++) {
-			if (longestDist.get(i) == rad){
-				indexAndRadius[j++] = i;
-				if(j==1) break;
-			}
-		}
-		indexAndRadius[2] = rad;
+		
+
+		indexAndRadius[1] = rad;
 		return indexAndRadius;
 	}
 	/**  the maxIndex function returns the index of the smallest
