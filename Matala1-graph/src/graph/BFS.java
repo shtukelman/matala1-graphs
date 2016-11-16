@@ -14,9 +14,9 @@ public class BFS {
 	private ArrayBlockingQueue<Integer> queue;
 	private int size;
 	
-	public BFS(ArrayList<Integer>[] graph) {
-		this.graph = copy(graph);
-		size = graph.length;
+	public BFS(Graph graph) {
+		this.graph = graph.getArrayListGraph().clone();
+		size = graph.getArrayListGraph().length;
 		init();
 	}
 	
@@ -48,18 +48,7 @@ public class BFS {
 		}
 	}
 	
-	private ArrayList<Integer>[] copy(ArrayList<Integer>[] g) {
-		@SuppressWarnings("unchecked")
-		ArrayList<Integer>[] copy = new ArrayList[g.length];
-		for (int i = 0; i < g.length; i++) {
-			copy[i] = new ArrayList<Integer>();
-			for (int j = 0; j < g[i].size(); j++) {
-				copy[i].add(g[i].get(j));
-			}
-		}
-		return copy;
-	}
-	
+
 	public String bestPath(int src, int dest) {
 		if(src >= size || dest >= size || src < 0 || dest < 0) return "";
 		AlgoBFS(src);
@@ -75,7 +64,7 @@ public class BFS {
 	/** the diameter of the tree is the largest of all shortest-path
 	 * distances in the tree. 
 	 * */
-	public int[] diameter(){
+	public int[] Getdiameter(){
 		int diam;
 		int[] indexAndDiam = {-1,-1,-1};
 		if (size < 2) return indexAndDiam;
@@ -97,7 +86,7 @@ public class BFS {
 		return indexAndDiam;
 	}
 
-	public int[] radius(){
+	public int[] Getradius(){
 		int rad=Integer.MAX_VALUE; 
 		int[] indexAndRadius = {-1,-1};
 		if (size < 2) return indexAndRadius;
@@ -119,7 +108,6 @@ public class BFS {
 				indexAndRadius[0] = longestDistIndex.get(i);
 			}
 		}
-		
 
 		indexAndRadius[1] = rad;
 		return indexAndRadius;

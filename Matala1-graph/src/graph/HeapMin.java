@@ -56,6 +56,7 @@ public class HeapMin {
 	}
 	/** the heap minimum element extraction */
 	public Vertex heapExtractMin(){
+		@SuppressWarnings("unused")
 		double min = _positiveInfinity; 
 		Vertex v=null;
 		if (!isEmpty()){
