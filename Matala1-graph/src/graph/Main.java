@@ -14,19 +14,19 @@ public class Main {
 		BFS bf=new BFS(myGraph);
  		dj.BlackListShortPath("test1.txt", myGraph);
 
-		dj.computePaths(4);
-		dj.printPaths();
-		dj.printWeights(); 
-		int v = 5;
-		
-		System.out.println("path to "+v+": "+ dj.getPath(v));
-		int[]diam = bf.Getdiameter();
-		System.out.println("diameter: "+diam[2] +", vertex1: "+diam[1]+", vertex2: "+diam[0]);
-		
-		int[] radius = bf.Getradius();
- 		System.out.println("radius: "+radius[1] +", vertex: "+radius[0]);
- 		
- 		System.out.println("is Triangle inequality: "+dj.isTriangleInequality());
+//		dj.computePaths(4);
+//		dj.printPaths();
+//		dj.printWeights(); 
+//		int v = 5;
+//		
+//		System.out.println("path to "+v+": "+ dj.getPath(v));
+//		int[]diam = bf.Getdiameter();
+//		System.out.println("diameter: "+diam[2] +", vertex1: "+diam[1]+", vertex2: "+diam[0]);
+//		
+//		int[] radius = bf.Getradius();
+// 		System.out.println("radius: "+radius[1] +", vertex: "+radius[0]);
+// 		
+// 		System.out.println("is Triangle inequality: "+dj.isTriangleInequality());
  		
 	}
 }
