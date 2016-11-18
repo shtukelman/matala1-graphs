@@ -16,7 +16,10 @@ public class Vertex {
 		visited = false;
 	}
 	
-	@SuppressWarnings("unchecked")
+	/**
+	 * Copy constructor of vertex
+	 * @param v Other Vertex
+	 */
 	public Vertex(Vertex v) {
 		name = v.name; 
 		dist = v.dist;
