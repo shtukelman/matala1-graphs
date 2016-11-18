@@ -39,6 +39,17 @@ public class graphTest {
 		
 	}
 
-	
-	
+	@Test
+	public void diameterTest ()
+	{
+		Graph g = new Graph("G3.txt");
+		BFS bfs = new BFS (g);
+		
+		int actual = bfs.Getradius()[1];
+		int expected=5;
+		//assertEquals(expected,actual);
+		
+		actual= bfs.Getdiameter()[0];
+		assertEquals(expected,actual);
+	}
 }
