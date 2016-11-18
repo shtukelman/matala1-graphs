@@ -110,8 +110,12 @@ public class Dijkstra {
 			int v1 = StringToInt(st.nextToken()), v2 = StringToInt(st.nextToken()); // Path																					// points
 			int numberOfBlacks = StringToInt(st.nextToken());
 			for (int k = 0; k < numberOfBlacks; k++) {
-					int BlackV = StringToInt(st.nextToken());
-					vertices[BlackV].dist=Double.POSITIVE_INFINITY;
+				int BlackV = StringToInt(st.nextToken()), BlackV2;
+				for (int i = 0; i < vertices[BlackV].edges.size(); i++) {
+					vertices[BlackV].edges.get(i).weight = Double.POSITIVE_INFINITY;
+					BlackV2 = vertices[BlackV].edges.get(i).vert;
+					vertices[BlackV2].edges.get(vertices[BlackV2].getEdgeIndex(BlackV)).weight = Double.POSITIVE_INFINITY;							
+				}
 			}
 			computePaths(v1);
 			printPath(vertices[v1], vertices[v2]);

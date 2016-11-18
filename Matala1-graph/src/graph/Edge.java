@@ -7,6 +7,10 @@ public class Edge{
 		vert = v; 
 		weight = w; 
 	}
+	public Edge(Edge e){ 
+		vert = e.vert; 
+		weight = e.weight; 
+	}
 	public String toString(){
 		return ""+vert;
 	}
