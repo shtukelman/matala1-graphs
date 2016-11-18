@@ -88,4 +88,12 @@ public class Graph {
 		return vs;
 	}
 
+	public int getVertex_number() {
+		return vertex_number;
+	}
+
+	public int getEdge_number() {
+		return edge_number;
+	}
+
 }
