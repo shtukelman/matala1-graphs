@@ -112,10 +112,9 @@ public class Dijkstra {
 			for (int k = 0; k < numberOfBlacks; k++) {
 					int BlackV = StringToInt(st.nextToken());
 					vertices[BlackV].dist=Double.POSITIVE_INFINITY;
-					computePaths(v1);
-					printPath(vertices[v1], vertices[v2]);
 			}
-
+			computePaths(v1);
+			printPath(vertices[v1], vertices[v2]);
 			for (int i = 0; i < vertices.length; i++) {
 				vertices[i] = new Vertex(g.getVertexGraph()[i]);
 			}
