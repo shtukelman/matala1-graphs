@@ -88,23 +88,8 @@ public class initGraph {
 		return list;
 		}
 	
-//	public static Vertex[] InPut_3(){
-//		// יצירת הקודקודים
-//		Vertex v0 = new Vertex(0);
-//		Vertex v1 = new Vertex(1);
-//		Vertex v2 = new Vertex(2);
-//		Vertex v3 = new Vertex(3);
-//		Vertex v4 = new Vertex(4);
-//
-//		// יצירת הצלעות לכל קודקוד
-//		v0.edges.add(new Edge(1,10));v0.edges.add(new Edge(4,5)); 
-//		v1.edges.add(new Edge(2,1)); v1.edges.add(new Edge(4,2));
-//		v2.edges.add(new Edge(3,6));
-//		v3.edges.add(new Edge(2,4)); v3.edges.add(new Edge(0,7));
-//		v4.edges.add(new Edge(3,2));v4.edges.add( new Edge(2,9));v4.edges.add(new Edge(1,3));
-//		// מערך קודקודים הכולל את כל הנתונים
-//		Vertex vs[] = {v0,v1,v2,v3,v4};
-//		return vs;
-//		}
+
+	
+	
 	
 }
