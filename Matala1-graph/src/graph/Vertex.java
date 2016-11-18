@@ -18,11 +18,14 @@ public class Vertex {
 	
 	@SuppressWarnings("unchecked")
 	public Vertex(Vertex v) {
-		this.name = v.name; 
-		this.dist = v.dist;
+		name = v.name; 
+		dist = v.dist;
 		previous = v.previous;
 		visited = v.visited;
-		this.edges=(ArrayList<Edge>) v.edges.clone();
+		edges=new ArrayList<Edge>();
+		for (int i = 0; i < v.edges.size(); i++) {
+			edges.add(new Edge(v.edges.get(i)));
+		}
 		
 	}
 	public int getEdgeIndex(int v)
