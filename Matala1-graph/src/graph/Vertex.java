@@ -9,6 +9,11 @@ public class Vertex {
 	public int previous;
 	public boolean visited;
 	
+	/**
+	 * Constructor
+	 * @param name number of the vertex
+	 * @param dist
+	 */
 	public Vertex(int name, double dist) {
 		this.name = name; 
 		this.dist = dist;
@@ -31,6 +36,12 @@ public class Vertex {
 		}
 		
 	}
+	
+	/**
+	 * Get index of edge that holds vertex (v)
+	 * @param v	Vertex
+	 * @return index
+	 */
 	public int getEdgeIndex(int v)
 	{
 		for (int i = 0; i < edges.size(); i++) {
