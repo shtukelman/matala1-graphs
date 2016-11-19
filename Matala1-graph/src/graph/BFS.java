@@ -79,7 +79,7 @@ public class BFS {
 	 * distances in the tree. 
 	 * */
 	public int[] Getdiameter(){
-		int diam;
+		int diam=Integer.MIN_VALUE;
 		int[] indexAndDiam = {-1,-1,-1};
 		if (size < 2) return indexAndDiam;
 		if (size == 2) {
@@ -89,14 +89,24 @@ public class BFS {
 			return indexAndDiam;
 		}
  
-		AlgoBFS(graph[0].get(0));
-		int indMax1 = maxIndex();
-		AlgoBFS(indMax1);
-		diam = maxDist();
-		int indMax2 = maxIndex();
-		indexAndDiam[0] = indMax1;
-		indexAndDiam[1] = indMax2;
-		indexAndDiam[2] = diam;
+		ArrayList<Integer> longestDist = new ArrayList<>();
+		ArrayList<Integer> longestDistIndex = new ArrayList<>();
+		ArrayList<Integer> longestDistIndex2 = new ArrayList<>();
+		for (int i = 0; i < graph.length; i++) {
+			AlgoBFS(i);
+			longestDist.add(maxDist());
+			longestDistIndex.add(i);
+			longestDistIndex2.add(maxIndex());
+			
+		}
+		for (int i = 0; i < longestDist.size(); i++) {
+			if (longestDist.get(i) > diam) {
+				diam = longestDist.get(i);
+				indexAndDiam[0] = longestDistIndex.get(i);
+				indexAndDiam[1] = longestDistIndex2.get(i);
+				indexAndDiam[2]=diam;
+			}
+		}
 		return indexAndDiam;
 	}
 
@@ -120,12 +130,13 @@ public class BFS {
 			if (longestDist.get(i) < rad) {
 				rad = longestDist.get(i);
 				indexAndRadius[0] = longestDistIndex.get(i);
+				indexAndRadius[1]=rad;
 			}
 		}
-
-		indexAndRadius[1] = rad;
 		return indexAndRadius;
 	}
+	
+
 	/**  the maxIndex function returns the index of the smallest
 	 * distance from source vertex to the other vertices in the 
 	 * the shortest path tree

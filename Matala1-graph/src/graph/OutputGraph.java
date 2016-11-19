@@ -29,7 +29,7 @@ public class OutputGraph {
 			dj.BlackListShortPath(TestFile, myGraph,bw);		//run black list test
 					
 			bw.write("|V|="+myGraph.getVertex_number()+", |E|="+myGraph.getEdge_number()+", Triangle="+dj.isTriangleInequality()+
-					", Radius: "+bf.Getradius()[1]+", Diameter: "+bf.Getdiameter()[2]);
+					", Radius: "+bf.Getradius()[1]+", Diameter: "+bf.Getdiameter()[2] +"");
 			long endTime=System.currentTimeMillis()-startTime;		//end time in MS
 			bw.write(", runetime: "+endTime+" ms");
 			

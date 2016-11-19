@@ -1,5 +1,7 @@
-4 5 1 0 2.2
-2 3 0 4.7
-2 3 1 4 5.16
-3 5 2 0 1 0.3
-|V|=6, |E|=9, Triangle=false, Radius: 2, Diameter: 2, runetime: 17 ms
+0 6 0 22.0
+2 3 0 17.0
+2 3 1 1 19.0
+4 3 1 5 15.0
+5 2 2 4 1 Infinity
+5 2 1 4 23.0
+|V|=7, |E|=11, Triangle=false, Radius: 2, Diameter: 3, runetime: 21 ms
