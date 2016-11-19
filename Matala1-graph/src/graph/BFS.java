@@ -75,12 +75,17 @@ public class BFS {
 			return indexAndDiam;
 		}
  
+		
 		AlgoBFS(graph[0].get(0));
 		int indMax1 = maxIndex();
 		AlgoBFS(indMax1);
+		int firstMaxInd = maxIndex();
+		
+		AlgoBFS(firstMaxInd);
+		
 		diam = maxDist();
 		int indMax2 = maxIndex();
-		indexAndDiam[0] = indMax1;
+		indexAndDiam[0] = firstMaxInd;
 		indexAndDiam[1] = indMax2;
 		indexAndDiam[2] = diam;
 		return indexAndDiam;
@@ -119,6 +124,7 @@ public class BFS {
 	private int maxIndex(){
 		int index = 0;
 		for (int i=0; i<dist.length; i++){
+	 
 			if (dist[index] < dist[i]) index = i;
 		}
 	 

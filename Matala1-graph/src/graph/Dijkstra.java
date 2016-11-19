@@ -1,7 +1,9 @@
 package graph;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -19,6 +21,11 @@ public class Dijkstra {
 		vertices = this.graph.getVertexGraph();
 	}
 
+
+	/**
+	 * Activate dijkstra algorithm
+	 * @param source vertex start
+	 */
 	public void computePaths(int source) {
 		this.source = source;
 		Vertex s = vertices[source];
@@ -51,6 +58,9 @@ public class Dijkstra {
 		}
 	}
 
+	/** Is TriangleInequality
+	 * @return boolean
+	 */
 	public boolean isTriangleInequality() {
 		for (int i = 0; i < vertices.length; i++) {
 			computePaths(i);
@@ -59,6 +69,9 @@ public class Dijkstra {
 
 	}
 
+	/**
+	 * Print all weights in graph
+	 */
 	public void printWeights() {
 		System.out.print("weights: ");
 		for (Vertex v : vertices) {
@@ -66,7 +79,10 @@ public class Dijkstra {
 		}
 		System.out.println();
 	}
-
+	public double printVertexWeight(int v)
+	{
+		return vertices[v].dist;
+	}
 	public String getPath(int v) {
 		int t = v;
 		String ans = t + "";
@@ -77,55 +93,78 @@ public class Dijkstra {
 		return ans;
 	}
 
-	public void printPaths() {
-		for (Vertex v : vertices) {
-			System.out.println("price of " + v.name + " = " + new DecimalFormat("#.###").format(v.dist) + ", path: "
-					+ getPath(v.name));
+	/**
+	 * Print specific path 
+	 * @param v1 First Vertex
+	 * @param v2 Second Vertex
+	 */
+	public void printPath(int v1, int v2,BufferedWriter bw) {
+		computePaths(v1);
+		try {
+			bw.write(v1 + " " + v2 + " "+ new DecimalFormat("#.###").format(vertices[v2].dist) + ", path: "+ getPath(v2)+"\n");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		System.out.println();
+		System.out.println(v1 + " " + v2 + " "+ new DecimalFormat("#.###").format(vertices[v2].dist) + ", path: "+ getPath(v2)+"\n");
 	}
 
-	public void printPath(Vertex v1, Vertex v2) {
-		System.out.println("price of " + v1.name + " = " + new DecimalFormat("#.###").format(v2.dist) + ", path: "
-				+ getPath(v2.name));
-		System.out.println();
-	}
-
-	public void BlackListShortPath(String BlackListFile, Graph g) throws IOException {
+	public void BlackListShortPath(String BlackListFile, Graph g,BufferedWriter bw) {
 		File file = new File(BlackListFile); // choose file
 		@SuppressWarnings("unused")
 		int num_of_queries;
 		String line; // read file by lines
 		StringTokenizer st; // Spliting the string
+		try {
+			file.createNewFile();
+			BufferedReader br;
 
-		file.createNewFile();
-		BufferedReader br = new BufferedReader(new FileReader(file)); // create a buffer for reading file
+			br = new BufferedReader(new FileReader(file));
 
-		num_of_queries = StringToInt(br.readLine());
-		// read the file text and fill in the array
-		while ((line = br.readLine()) != null) {
-			if (line.contains("info"))
-				break;
-			st = new StringTokenizer(line);
-			int v1 = StringToInt(st.nextToken()), v2 = StringToInt(st.nextToken()); // Path																					// points
-			int numberOfBlacks = StringToInt(st.nextToken());
-			for (int k = 0; k < numberOfBlacks; k++) {
-				int BlackV = StringToInt(st.nextToken()), BlackV2;
-				for (int i = 0; i < vertices[BlackV].edges.size(); i++) {
-					vertices[BlackV].edges.get(i).weight = Double.POSITIVE_INFINITY;
-					BlackV2 = vertices[BlackV].edges.get(i).vert;
-					vertices[BlackV2].edges.get(vertices[BlackV2].getEdgeIndex(BlackV)).weight = Double.POSITIVE_INFINITY;							
+			// create a buffer for reading file
+
+			num_of_queries = StringToInt(br.readLine());
+			// read the file text and fill in the array
+			while ((line = br.readLine()) != null) {
+				if (line.contains("info"))
+					break;
+				st = new StringTokenizer(line);
+				int v1 = StringToInt(st.nextToken()), v2 = StringToInt(st.nextToken()); // Path
+				int numberOfBlacks = StringToInt(st.nextToken());
+				bw.write(v1+" "+v2+" "+numberOfBlacks);
+				System.out.print(v1+" "+v2+" "+numberOfBlacks);
+				for (int k = 0; k < numberOfBlacks; k++) {
+					int BlackV = StringToInt(st.nextToken());
+					bw.write(" "+BlackV);
+					System.out.print(" "+BlackV);
+					UpdateBlackPoint(BlackV); 	//Black the point
 				}
+				computePaths(v1);
+				bw.write(" "+vertices[v2].dist+"\n");
+				System.out.println(" "+vertices[v2].dist+"\n");
+				resetGraph(g);	//reset to original graph
 			}
-			computePaths(v1);
-			printPath(vertices[v1], vertices[v2]);
-			for (int i = 0; i < vertices.length; i++) {
-				vertices[i] = new Vertex(g.getVertexGraph()[i]);
-			}
+			br.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		br.close();
 	}
 
+	private void UpdateBlackPoint(int BlackV)
+	{
+		int BlackV2;
+		for (int i = 0; i < vertices[BlackV].edges.size(); i++) {
+			vertices[BlackV].edges.get(i).weight = Double.POSITIVE_INFINITY;
+			BlackV2 = vertices[BlackV].edges.get(i).vert;
+			vertices[BlackV2].edges.get(vertices[BlackV2].getEdgeIndex(BlackV)).weight = Double.POSITIVE_INFINITY;							
+		}
+	}
+	private void resetGraph(Graph g)
+	{
+		for (int i = 0; i < vertices.length; i++) {
+			vertices[i] = new Vertex(g.getVertexGraph()[i]);
+		}
+	}
 	private int StringToInt(String s) {
 		return Integer.parseInt(s);
 	}
