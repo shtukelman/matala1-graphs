@@ -1,6 +1,5 @@
-4 5 1 0 3.0
+4 5 1 0 2.2
 2 3 0 4.7
 2 3 1 4 5.16
 3 5 2 0 1 0.3
-0 4 1.1, path: 0->4
-|V|=6, |E|=9, Triangle=false, Radius: 2, Diameter: 0, runetime: 40 ms
+|V|=6, |E|=9, Triangle=false, Radius: 2, Diameter: 2, runetime: 31 ms

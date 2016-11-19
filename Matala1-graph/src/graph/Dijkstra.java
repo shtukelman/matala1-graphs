@@ -3,7 +3,6 @@ package graph;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -16,10 +15,9 @@ public class Dijkstra {
 	private boolean TriangleInequality = true;
 	private static double infinity = Double.POSITIVE_INFINITY;
 
-	public Dijkstra(Graph graph,int start) {
+	public Dijkstra(Graph graph) {
 		this.graph = new Graph(graph);
 		vertices = this.graph.getVertexGraph();
-		computePaths(start);
 	}
 
 
@@ -63,8 +61,14 @@ public class Dijkstra {
 	 * @return boolean
 	 */
 	public boolean isTriangleInequality() {
-		for (int i = 0; i < vertices.length; i++) {
-			computePaths(i);
+		try{
+			for (int i = 0; i < vertices.length; i++) {
+				computePaths(i);
+			}
+		}
+		catch(Exception e)
+		{
+			return false;
 		}
 		return TriangleInequality;
 
@@ -129,6 +133,7 @@ public class Dijkstra {
 				if (line.contains("info"))
 					break;
 				st = new StringTokenizer(line);
+
 				int v1 = StringToInt(st.nextToken()), v2 = StringToInt(st.nextToken()); // Path
 				int numberOfBlacks = StringToInt(st.nextToken());
 				bw.write(v1+" "+v2+" "+numberOfBlacks);
@@ -139,6 +144,7 @@ public class Dijkstra {
 					System.out.print(" "+BlackV);
 					UpdateBlackPoint(BlackV); 	//Black the point
 				}
+
 				computePaths(v1);
 				bw.write(" "+vertices[v2].dist+"\n");
 				System.out.println(" "+vertices[v2].dist+"\n");
