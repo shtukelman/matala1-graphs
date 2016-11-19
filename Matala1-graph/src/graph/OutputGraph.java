@@ -16,7 +16,7 @@ public class OutputGraph {
 	{
 		long startTime=System.currentTimeMillis();
 		Graph myGraph = new Graph(Graph);
-		Dijkstra dj=new Dijkstra(myGraph,0);
+		Dijkstra dj=new Dijkstra(myGraph);
 		BFS bf=new BFS(myGraph);
 		File outFile=new File(OutPutFile);
 		try {
@@ -26,10 +26,12 @@ public class OutputGraph {
 			BufferedWriter bw = new BufferedWriter(fw);
 			
 			dj.BlackListShortPath(TestFile, myGraph,bw);
-			dj.printPath(0, 4, bw);
+		//	dj.printPath(0, 4, bw);
+			 
 		long endTime=System.currentTimeMillis()-startTime;
 			bw.write("|V|="+myGraph.getVertex_number()+", |E|="+myGraph.getEdge_number()+", Triangle="+dj.isTriangleInequality()+
-					", Radius: "+bf.Getradius()[1]+", Diameter: "+bf.Getdiameter()[1]+", runetime: "+endTime+" ms");
+					", Radius: "+bf.Getradius()[1]+", Diameter: "+bf.Getdiameter()[2]+", runetime: "+endTime+" ms");
+			 
 			bw.close();
 			fw.close();
 			

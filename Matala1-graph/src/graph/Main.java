@@ -28,6 +28,6 @@ public class Main {
 // 		
 // 		System.out.println("is Triangle inequality: "+dj.isTriangleInequality());
 // 		
-		OutputGraph Graph=new OutputGraph("G3.txt", "G3test.txt", "G3outPut.txt");
+		OutputGraph Graph=new OutputGraph("G3.txt", "G3test.txt", "G0outPut.txt");
 	}
 }
