@@ -14,6 +14,10 @@ public class BFS {
 	private ArrayBlockingQueue<Integer> queue;
 	private int size;
 	
+	/**
+	 * BFS Algorithm run
+	 * @param graph	graph
+	 */
 	public BFS(Graph graph) {
 		this.graph = graph.getArrayListGraph().clone();
 		size = graph.getArrayListGraph().length;
@@ -28,7 +32,11 @@ public class BFS {
 		Arrays.fill(pred, -1);
 	}
 	
-	public void AlgoBFS(int s) {
+	/**
+	 * Run BFS Algo
+	 * @param s source vertex
+	 */
+	private void AlgoBFS(int s) {
 		init();
 		queue = new ArrayBlockingQueue<Integer>(size);
 		queue.add(s);
@@ -49,6 +57,12 @@ public class BFS {
 	}
 	
 
+	/**
+	 * print best path source to destination
+	 * @param src
+	 * @param dest
+	 * @return best path
+	 */
 	public String bestPath(int src, int dest) {
 		if(src >= size || dest >= size || src < 0 || dest < 0) return "";
 		AlgoBFS(src);

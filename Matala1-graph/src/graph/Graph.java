@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 public class Graph {
 
 	public static double infinity = Double.POSITIVE_INFINITY;
-	private File file;
+	private File file;		//read file
 	private int vertex_number, edge_number;
 	private Vertex[] vs;
 	private ArrayList<Integer>[] regGraph;
