@@ -103,14 +103,15 @@ public class Dijkstra {
 	 * @param v1 First Vertex
 	 * @param v2 Second Vertex
 	 */
-	public void printPath(int v1, int v2,BufferedWriter bw) {
+	public void printPath(int v1, int v2) {
 		computePaths(v1);
-		try {
-			bw.write(v1 + " " + v2 + " "+ new DecimalFormat("#.###").format(vertices[v2].dist) + ", path: "+ getPath(v2)+"\n");
-		} catch (IOException e) {
-			e.printStackTrace();
+		try{
+			System.out.println(v1 + " to " + v2 + ", path: "+ getPath(v2)+"\n");
 		}
-		System.out.println(v1 + " " + v2 + " "+ new DecimalFormat("#.###").format(vertices[v2].dist) + ", path: "+ getPath(v2)+"\n");
+		catch(Exception e)
+		{
+			System.out.println(v1+" to "+v2+" there is no path");
+		}
 	}
 
 	public void BlackListShortPath(String BlackListFile, Graph g,BufferedWriter bw) {
@@ -126,7 +127,6 @@ public class Dijkstra {
 			br = new BufferedReader(new FileReader(file));
 
 			// create a buffer for reading file
-
 			num_of_queries = StringToInt(br.readLine());
 			// read the file text and fill in the array
 			while ((line = br.readLine()) != null) {
