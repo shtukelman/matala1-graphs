@@ -21,6 +21,9 @@ public class Dijkstra {
 	}
 
 
+	public Vertex[] getVertices() {
+		return vertices;
+	}
 	/**
 	 * Activate dijkstra algorithm
 	 * @param source vertex start
