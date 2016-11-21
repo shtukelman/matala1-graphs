@@ -10,6 +10,6 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		@SuppressWarnings("unused")
-		OutputGraph Graph=new OutputGraph("test_Ex1.txt", "test1_Ex1_run.txt", "G5outPut.txt");
+		OutputGraph Graph=new OutputGraph("G3.txt", "G3test.txt", "G3outPut.txt");
 	}
 }
