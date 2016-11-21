@@ -14,6 +14,31 @@ public class Dijkstra {
 	private int source;
 	private boolean TriangleInequality = true;
 	private static double infinity = Double.POSITIVE_INFINITY;
+	
+	public Vertex[] getVertices() {
+		return vertices;
+	}
+
+
+	public Graph getGraph() {
+		return graph;
+	}
+
+
+	public int getSource() {
+		return source;
+	}
+
+
+	public static double getInfinity() {
+		return infinity;
+	}
+
+
+	public void setTriangleInequality(boolean triangleInequality) {
+		TriangleInequality = triangleInequality;
+	}
+
 
 	public Dijkstra(Graph graph) {
 		this.graph = new Graph(graph);
