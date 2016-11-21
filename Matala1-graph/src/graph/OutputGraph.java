@@ -28,12 +28,11 @@ public class OutputGraph {
 			
 			dj.BlackListShortPath(TestFile, myGraph,bw);		//run black list test
 					
-			bw.write("|V|="+myGraph.getVertex_number()+", |E|="+myGraph.getEdge_number()+", Triangle="+dj.isTriangleInequality()+
+			bw.write("|V|="+myGraph.getVertex_number()+", |E|="+myGraph.getEdge_number()+", Triangle="+dj.isTriangleInequality(myGraph)+
 					", Radius: "+bf.Getradius()[1]+", Diameter: "+bf.Getdiameter()[2] +"");
 			long endTime=System.currentTimeMillis()-startTime;		//end time in MS
 			bw.write(", runetime: "+endTime+" ms");
-			dj.printPath(19, 50);
-			dj.printPath(29, 89);
+ 
 			bw.close();
 			fw.close();
 			

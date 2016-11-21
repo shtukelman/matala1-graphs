@@ -51,6 +51,7 @@ public class Dijkstra {
 	 * @param source vertex start
 	 */
 	public void computePaths(int source) {
+		
 		this.source = source;
 		Vertex s = vertices[source];
 		s.dist = 0;
@@ -68,9 +69,6 @@ public class Dijkstra {
 				Vertex v = vertices[e.vert];
 				if (!v.visited) {
 					double distU = u.dist + e.weight;
-					if (distU <= v.dist && v.dist != infinity) {
-						TriangleInequality = false;
-					}
 					if (distU < v.dist) {// relaxation
 						v.dist = distU;
 						v.previous = vertices[u.name].name;
@@ -85,16 +83,22 @@ public class Dijkstra {
 	/** Is TriangleInequality
 	 * @return boolean
 	 */
-	public boolean isTriangleInequality() {
-		try{
+	public boolean isTriangleInequality(Graph g) {
+		TriangleInequality = true;
 			for (int i = 0; i < vertices.length; i++) {
+				resetGraph(g);
 				computePaths(i);
+				for (int j = 0; j < vertices[i].edges.size(); j++) {
+					int vertex = vertices[i].edges.get(j).vert;
+					int shortestPath = getShorestPath(vertex);
+					if (shortestPath>1) {
+						TriangleInequality = false;
+						return TriangleInequality;
+					}
+				}
 			}
-		}
-		catch(Exception e)
-		{
-			return false;
-		}
+	 
+ 
 		return TriangleInequality;
 
 	}
@@ -122,7 +126,15 @@ public class Dijkstra {
 		}
 		return ans;
 	}
-
+	public int getShorestPath(int v) {
+		int t = v;
+		int ans = 0;
+		while (t != source && t!=-1) {
+			t = vertices[t].previous;
+			ans +=1;
+		}
+		return ans;
+	}
 	/**
 	 * Print specific path 
 	 * @param v1 First Vertex
