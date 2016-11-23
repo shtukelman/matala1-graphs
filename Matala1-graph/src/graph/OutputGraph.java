@@ -27,9 +27,14 @@ public class OutputGraph {
 			BufferedWriter bw = new BufferedWriter(fw);
 			
 			dj.BlackListShortPath(TestFile, myGraph,bw);		//run black list test
-					
-			bw.write("|V|="+myGraph.getVertex_number()+", |E|="+myGraph.getEdge_number()+", Triangle="+dj.isTriangleInequality(myGraph)+
-					", Radius: "+bf.Getradius()[1]+", Diameter: "+bf.Getdiameter()[2] +"");
+				boolean TE = dj.isTriangleInequality(myGraph);	
+				String myTE = "";
+				if (TE)myTE = "TE";
+				else{
+					myTE = "!TE";
+				}
+			bw.write("|V|="+myGraph.getVertex_number()+", |E|="+myGraph.getEdge_number()+", "+myTE+
+					", Radius: "+dj.getRadius(myGraph)[1]+", Diameter: "+dj.getDiameter(myGraph)[2] +"");
 			long endTime=System.currentTimeMillis()-startTime;		//end time in MS
 			bw.write(", runetime: "+endTime+" ms");
  
