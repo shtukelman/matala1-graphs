@@ -158,11 +158,12 @@ public class graphTest {
 	@Test
 	public void pathTest3() throws IOException {
 		
-		// 3-> 6 | 9 |  1->0->5->6->4->3
+		// 1-> 3 | 9 |  1->0->5->6->4->3
 		Graph g = new Graph("G3.txt");
 		Dijkstra d = new Dijkstra(g);
 		d.computePaths(1); //start point
 		String actual = d.getPath(3); //end point
+		 
 		String expected = "1->0->5->6->4->3";
 		assertTrue(actual.equals(expected));
 		
