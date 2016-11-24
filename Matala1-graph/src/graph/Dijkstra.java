@@ -298,4 +298,15 @@ public class Dijkstra {
 	private int StringToInt(String s) {
 		return Integer.parseInt(s);
 	}
+	
+	public void BlackListShortPath(int num_of_queries,String blacklist, Graph g) {
+		String line=blacklist;
+		StringTokenizer st=new StringTokenizer(line); // Spliting the string
+		int v1 = StringToInt(st.nextToken()), v2 = StringToInt(st.nextToken()); // Path
+		int numberOfBlacks = num_of_queries;//StringToInt(st.nextToken());
+		for (int k = 0; k < numberOfBlacks; k++) {
+			int BlackV = StringToInt(st.nextToken());
+			UpdateBlackPoint(BlackV); 	//Black the point
+		}
+	}
 }

@@ -48,46 +48,37 @@ public class graphTest {
 	@Test
 	public void radTest1() throws IOException {
 		Graph g = new Graph("G3.txt");
-		BFS bfs = new BFS(g);
-		int actual = bfs.Getradius()[1];
-		int expected = 2;
-		assertEquals(expected,expected );
+		Dijkstra dj = new Dijkstra(g);
+		double actual = dj.getRadius(g)[1];
+		int expected = 5;
+		assertEquals(actual,expected, 0.01 );
 	}
 	
 	@Test
 	public void radTest2() throws IOException {
 		Graph g = new Graph("G4.txt");
-		BFS bfs = new BFS(g);
-		int actual = bfs.Getradius()[1];
-		int expected = 2;
-		assertEquals(expected,expected );
+		Dijkstra dj = new Dijkstra(g);
+		double actual = dj.getRadius(g)[1];
+		double expected = 6;
+		assertEquals(actual,expected,0.01 );
 	}
 	
 	@Test
 	public void radTest3() throws IOException {
 		Graph g = new Graph("G5.txt");
-		BFS bfs = new BFS(g);
-		int actual = bfs.Getradius()[1];
-		int expected = 2;
-		assertEquals(expected,expected );
-	}
-
-	@Test
-	public void radTest4() throws IOException {
-		Graph g = new Graph("G5.txt");
-		BFS bfs = new BFS(g);
-		int actual = bfs.Getradius()[1];
-		int expected = 2;
-		assertEquals(expected,expected );
+		Dijkstra dj = new Dijkstra(g);
+		double actual = dj.getRadius(g)[1];
+		double expected = 14;
+		assertEquals(actual,expected,0.01 );
 	}
 	
 	@Test
-	public void radTest5() throws IOException {
+	public void radTest4() throws IOException {
 		Graph g = new Graph("G6.txt");
-		BFS bfs = new BFS(g);
-		int actual = bfs.Getradius()[1];
-		int expected = 3;
-		assertEquals(expected,expected );
+		Dijkstra dj = new Dijkstra(g);
+		double actual = dj.getRadius(g)[1];
+		double expected = 17;
+		assertEquals(actual,expected,0.01 );
 	}
 
 	
@@ -95,39 +86,42 @@ public class graphTest {
 	@Test
 	public void diamTest1() throws IOException {
 		Graph g = new Graph("G3.txt");
-		BFS bfs = new BFS(g);
-		int actual = bfs.Getdiameter()[2];
-		int expected = 3;
-		assertEquals(expected,expected );
+		Dijkstra dj = new Dijkstra (g);
+		double actual = dj.getDiameter(g)[2];
+		double expected = 13;
+		assertEquals(expected, actual, 0.01);
 	}
 	
 	@Test
 	public void diamTest2() throws IOException {
 		Graph g = new Graph("G4.txt");
-		BFS bfs = new BFS(g);
-		int actual = bfs.Getdiameter()[2];
-		int expected = 3;
-		assertEquals(expected,expected );
+		Dijkstra dj = new Dijkstra (g);
+		double actual = dj.getDiameter(g)[2];
+		//System.out.println(actual);
+		double expected = 7;
+		assertEquals(expected, actual, 0.01);
 	}
 	
 	@Test
 	public void diamTest3() throws IOException {
 		Graph g = new Graph("G5.txt");
-		BFS bfs = new BFS(g);
-		int actual = bfs.Getdiameter()[2];
-		int expected = 3;
-		assertEquals(expected,expected );
+		Dijkstra dj = new Dijkstra (g);
+		double actual = dj.getDiameter(g)[2];
+		//System.out.println(actual);
+		double expected = 22;
+		assertEquals(expected, actual, 0.01);
 	}
 	
 	@Test
 	public void diamTest4() throws IOException {
 		Graph g = new Graph("G6.txt");
-		BFS bfs = new BFS(g);
-		int actual = bfs.Getdiameter()[2];
-		int expected = 5;
-		assertEquals(expected,expected );
+		Dijkstra dj = new Dijkstra (g);
+		double actual = dj.getDiameter(g)[2];
+		double expected = 26;
+		assertEquals(expected, actual, 0.01);
 	}
 
+	
 	//path Tests
 	@Test
 	public void pathTest1() throws IOException {
@@ -157,13 +151,12 @@ public class graphTest {
 		
 	@Test
 	public void pathTest3() throws IOException {
-		
-		// 1-> 3 | 9 |  1->0->5->6->4->3
+
 		Graph g = new Graph("G3.txt");
 		Dijkstra d = new Dijkstra(g);
 		d.computePaths(1); //start point
 		String actual = d.getPath(3); //end point
-		 
+
 		String expected = "1->0->5->6->4->3";
 		assertTrue(actual.equals(expected));
 		
@@ -220,19 +213,37 @@ public class graphTest {
 		assertTrue(actual.equals(expected));
 		
 	}
-	
+
 	@Test
-	public void pathTest8() throws IOException {
+	public void pathTest_7() throws IOException {
 		
-		// 2->3 | 4 |  2->1->3
-		Graph g = new Graph("Graph1.txt");
+		// 2->5 | 17 |  "2->1->0->5"
+		Graph g = new Graph("G3.txt");
 		Dijkstra d = new Dijkstra(g);
+		d.BlackListShortPath(1, "2 5 6", g);
 		d.computePaths(2); //start point
-		String actual = d.getPath(3); //end point
-		String expected = "2->1->3";
+		String actual = d.getPath(5); //end point
+		String expected = "2->1->0->5";
 		assertTrue(actual.equals(expected));
 		
 	}
+	
+	@Test
+	public void pathTest_8() throws IOException {
+		
+		// 0->4 | 9 |  "0->2->3->8->4"
+		Graph g = new Graph("G4.txt");
+		Dijkstra d = new Dijkstra(g);
+		d.BlackListShortPath(2, "0 4 1 6", g);
+		d.computePaths(0); //start point
+		String actual = d.getPath(4); //end point
+		String expected = "0->2->3->8->4";
+		assertTrue(actual.equals(expected));
+		
+	}
+	
+	
+	
 
 	
 	//pathWeightTest
@@ -276,6 +287,48 @@ public class graphTest {
 	}
 	
 	@Test
+	public void pathWeightTest_3() throws IOException {
+		
+		// 2-> 5 (6) | 13 
+		Graph g = new Graph("G3.txt");
+		Dijkstra d = new Dijkstra(g);
+		d.BlackListShortPath(1, "2 5 6", g);
+		d.computePaths(2); //start point
+		int actual = (int) d.getVertices()[5].dist; //end point
+		int expected = 13;
+		assertEquals(expected,actual);
+		
+	}
+	
+	@Test
+	public void pathWeightTest_4() throws IOException {
+		
+		// 4-> 5 (6) | 13 
+		Graph g = new Graph("G3.txt");
+		Dijkstra d = new Dijkstra(g);
+		d.BlackListShortPath(1, "4 5 6", g);
+		d.computePaths(4); //start point
+		int actual = (int) d.getVertices()[5].dist; //end point
+		int expected = 17;
+		assertEquals(expected,actual);
+		
+	}
+
+	@Test
+	public void pathWeightTest_5() throws IOException {
+		
+		// 1-> 3 (2 6) | 38 
+		Graph g = new Graph("G3.txt");
+		Dijkstra d = new Dijkstra(g);
+		d.BlackListShortPath(2, "1 3 2 6", g);
+		d.computePaths(1); //start point
+		int actual = (int) d.getVertices()[3].dist; //end point
+		int expected = 38;
+		assertEquals(expected,actual);
+		
+	}
+	
+	@Test
 	public void pathWeightTest4() throws IOException {
 		
 		// 1-> 8 | 5 
@@ -298,6 +351,34 @@ public class graphTest {
 		int actual = (int) d.getVertices()[5].dist; //end point
 		int expected = 7;
 		assertEquals(actual,expected);
+		
+	}
+	
+	@Test
+	public void pathWeightTest_6() throws IOException {
+		
+		// 3-> 6 (1 8) | 7 
+		Graph g = new Graph("G4.txt");
+		Dijkstra d = new Dijkstra(g);
+		d.BlackListShortPath(2, "3 6 1 8", g);
+		d.computePaths(3); //start point
+		int actual = (int) d.getVertices()[6].dist; //end point
+		int expected = 7;
+		assertEquals(expected,actual);
+		
+	}
+	
+	@Test
+	public void pathWeightTest_7() throws IOException {
+		
+		// 0-> 4 (1 6) | 9 
+		Graph g = new Graph("G4.txt");
+		Dijkstra d = new Dijkstra(g);
+		d.BlackListShortPath(2, "0 4 1 6", g);
+		d.computePaths(0); //start point
+		int actual = (int) d.getVertices()[4].dist; //end point
+		int expected = 9;
+		assertEquals(expected,actual);
 		
 	}
 	
@@ -327,17 +408,5 @@ public class graphTest {
 		
 	}
 	
-	@Test
-	public void pathWeightTest8() throws IOException {
-		
-		// 2->3 | 17 
-		Graph g = new Graph("Graph1.txt");
-		Dijkstra d = new Dijkstra(g);
-		d.computePaths(2); //start point
-		int actual = (int) d.getVertices()[3].dist; //end point
-		int expected = 4;
-		assertEquals(actual,expected);
-		
-	}
 
 }
