@@ -88,7 +88,6 @@ public class graphTest {
 		Graph g = new Graph("G3.txt");
 		Dijkstra dj = new Dijkstra (g);
 		double actual = dj.getDiameter(g)[2];
-		System.out.println(actual);
 		double expected = 13;
 		assertEquals(expected, actual, 0.01);
 	}
