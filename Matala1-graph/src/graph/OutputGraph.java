@@ -17,7 +17,7 @@ public class OutputGraph {
 		long startTime=System.currentTimeMillis();		//start time calc
 		Graph myGraph = new Graph(Graph);		//createa graph
 		Dijkstra dj=new Dijkstra(myGraph);		//run dijkstra algothm
-		BFS bf=new BFS(myGraph);		//run bfs algorithm
+		 
 		
 		File outFile=new File(OutPutFile);		//output file
 		try {

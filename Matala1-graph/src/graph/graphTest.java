@@ -408,5 +408,36 @@ public class graphTest {
 		
 	}
 	
-
+	//TIETest
+	
+		@Test
+		public void TieTest1() throws IOException 
+		{
+			Graph g = new Graph("G3.txt");
+			Dijkstra d = new Dijkstra(g);
+			assertFalse (d.isTriangleInequality(g));
+			
+		}
+		@Test
+		public void TieTest2() throws IOException 
+		{
+			Graph g = new Graph("G4.txt");
+			Dijkstra d = new Dijkstra(g);
+			assertFalse (d.isTriangleInequality(g));
+			
+		}
+		@Test
+		public void TieTest3() throws IOException 
+		{
+			Graph g = new Graph("G5.txt");
+			Dijkstra d = new Dijkstra(g);
+			assertFalse (d.isTriangleInequality(g));
+		}
+		@Test
+		public void TieTest4() throws IOException 
+		{
+			Graph g = new Graph("G7.txt");
+			Dijkstra d = new Dijkstra(g);
+			assertTrue (d.isTriangleInequality(g));
+		}
 }
