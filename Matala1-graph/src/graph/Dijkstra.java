@@ -83,15 +83,15 @@ public class Dijkstra {
 	 * 
 	 * @return boolean
 	 */
-	public boolean isTriangleInequality(Graph g) {
+	public boolean isTriangleInequality(Graph g) { // check TE inqeuality
 		TriangleInequality = true;
-		for (int i = 0; i < vertices.length; i++) {
+		for (int i = 0; i < vertices.length; i++) { 
 			resetGraph(g);
-			computePaths(i);
-			for (int j = 0; j < vertices[i].edges.size(); j++) {
-				int vertex = vertices[i].edges.get(j).vert;
-				int shortestPath = getShorestPath(vertex);
-				if (shortestPath > 1) {
+			computePaths(i); // run dijkstra over all vertex
+			for (int j = 0; j < vertices[i].edges.size(); j++) {  // take all neighbors
+				int vertex = vertices[i].edges.get(j).vert; // take vertex neighbor
+				int shortestPath = getShorestPath(vertex); //  find shortest path between vertex and his neighbor
+				if (shortestPath > 1) { // if path longer then 1 Edge => TE = false
 					TriangleInequality = false;
 					return TriangleInequality;
 				}
@@ -116,7 +116,9 @@ public class Dijkstra {
 	public double printVertexWeight(int v) {
 		return vertices[v].dist;
 	}
-
+	/**
+	 * return path
+	 */
 	public String getPath(int v) {
 		int t = v;
 		String ans = t + "";
@@ -126,7 +128,9 @@ public class Dijkstra {
 		}
 		return ans;
 	}
-
+	/**
+	 * get path leanght
+	 */
 	public int getShorestPath(int v) {
 		int t = v;
 		int ans = 0;
