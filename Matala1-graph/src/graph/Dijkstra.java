@@ -219,39 +219,45 @@ public class Dijkstra {
 	public double[] getDiameter(Graph g) {
 
 		double diam = 0,temp;
-		double max = Double.NEGATIVE_INFINITY;
-		int ver1 = 0, ver2 = 0;
-		double[] diamArr = { -1, -1, -1 };
+		double max,min;
+		double ver1 = 0,ver2=0;
+		double[] diamArr = { -1, -1 ,-1};
 
-		computePaths(0);
-
+		ArrayList<Double> maxdiam = new ArrayList<>();
+		ArrayList<Double> maxdiamIndex = new ArrayList<>();
 		for (int i = 0; i < vertices.length; i++) {
-			temp = vertices[i].dist;
+			max = Double.NEGATIVE_INFINITY;
+			resetGraph(g);
+            computePaths(i);
+			for (int j = 0; j < vertices.length; j++) {
 
-			if (temp > max) {
-				max = temp;
-				ver1 = i;
+				temp = vertices[j].dist;
+				 
+				if (temp > max) {
+					max = temp;
+					ver1 = j;
+					
+				}
 			}
+		 
+			maxdiam.add(max);
+			maxdiamIndex.add(ver1);
 		}
-
+ 
+		resetGraph(g);
 		max = Double.NEGATIVE_INFINITY;
-		resetGraph(g);
-
-		computePaths(ver1);
-		for (int i = 0; i < vertices[ver1].edges.size(); i++) {
-			temp = vertices[i].dist;
-
-			if (temp > max) {
+		 for (int i = 0; i < maxdiam.size(); i++) {
+			temp = maxdiam.get(i);
+			if (temp > max){
 				max = temp;
+				ver1 = maxdiamIndex.get(i);
 				ver2 = i;
-
 			}
 		}
-		resetGraph(g);
-		diam = max;
-		diamArr[0] = ver1;
-		diamArr[1] = ver2;
-		diamArr[2] = diam;
+		 
+		 diamArr[0] = ver1;		 
+		 diamArr[1] = ver2;
+		 diamArr[2] = max;
 		return diamArr;
 	}
 
