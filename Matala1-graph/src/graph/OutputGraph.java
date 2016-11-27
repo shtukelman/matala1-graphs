@@ -29,9 +29,9 @@ public class OutputGraph {
 			dj.BlackListShortPath(TestFile, myGraph,bw);		//run black list test
 				boolean TE = dj.isTriangleInequality(myGraph);	
 				String myTE = "";
-				if (TE)myTE = "TE";
+				if (TE)myTE = "TIE";
 				else{
-					myTE = "!TE";
+					myTE = "!TIE";
 				}
 			bw.write("|V|="+myGraph.getVertex_number()+", |E|="+myGraph.getEdge_number()+", "+myTE+
 					", Radius: "+dj.getRadius(myGraph)[1]+", Diameter: "+dj.getDiameter(myGraph)[2] +"");
