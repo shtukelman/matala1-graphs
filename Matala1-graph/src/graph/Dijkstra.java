@@ -254,6 +254,7 @@ public class Dijkstra {
 				ver2 = i;
 			}
 		}
+        
 
 		diamArr[0] = ver1;		 
 		diamArr[1] = ver2;

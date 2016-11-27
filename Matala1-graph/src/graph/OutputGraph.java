@@ -26,7 +26,9 @@ public class OutputGraph {
 			FileWriter fw = new FileWriter(outFile.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
 
+			if (TestFile!="0"){
 			dj.BlackListShortPath(TestFile, myGraph,bw);		//run black list test
+			}
 			boolean TE = dj.isTriangleInequality(myGraph);	
 			String myTE = "";
 			if (TE)myTE = "TIE";
