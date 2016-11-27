@@ -17,30 +17,30 @@ public class OutputGraph {
 		long startTime=System.currentTimeMillis();		//start time calc
 		Graph myGraph = new Graph(Graph);		//createa graph
 		Dijkstra dj=new Dijkstra(myGraph);		//run dijkstra algothm
-		 
-		
+
+
 		File outFile=new File(OutPutFile);		//output file
 		try {
 			outFile.createNewFile();
-			
+
 			FileWriter fw = new FileWriter(outFile.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
-			
-	 		dj.BlackListShortPath(TestFile, myGraph,bw);		//run black list test
-				boolean TE = dj.isTriangleInequality(myGraph);	
-				String myTE = "";
-				if (TE)myTE = "TIE";
-				else{
-					myTE = "!TIE";
-				}
+
+			dj.BlackListShortPath(TestFile, myGraph,bw);		//run black list test
+			boolean TE = dj.isTriangleInequality(myGraph);	
+			String myTE = "";
+			if (TE)myTE = "TIE";
+			else{
+				myTE = "!TIE";
+			}
 			bw.write("|V|="+myGraph.getVertex_number()+", |E|="+myGraph.getEdge_number()+", "+myTE+
 					", Radius: "+dj.getRadius(myGraph)[1]+", Diameter: "+dj.getDiameter(myGraph)[2] +"");
 			long endTime=System.currentTimeMillis()-startTime;		//end time in MS
 			bw.write(", runetime: "+endTime+" ms");
- 
+
 			bw.close();
 			fw.close();
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

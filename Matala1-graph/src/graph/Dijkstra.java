@@ -228,25 +228,25 @@ public class Dijkstra {
 		for (int i = 0; i < vertices.length; i++) {
 			max = Double.NEGATIVE_INFINITY;
 			resetGraph(g);
-            computePaths(i);
+			computePaths(i);
 			for (int j = 0; j < vertices.length; j++) {
 
 				temp = vertices[j].dist;
-				 
+
 				if (temp > max) {
 					max = temp;
 					ver1 = j;
-					
+
 				}
 			}
-		 
+
 			maxdiam.add(max);
 			maxdiamIndex.add(ver1);
 		}
- 
+
 		resetGraph(g);
 		max = Double.NEGATIVE_INFINITY;
-		 for (int i = 0; i < maxdiam.size(); i++) {
+		for (int i = 0; i < maxdiam.size(); i++) {
 			temp = maxdiam.get(i);
 			if (temp > max){
 				max = temp;
@@ -254,10 +254,10 @@ public class Dijkstra {
 				ver2 = i;
 			}
 		}
-		 
-		 diamArr[0] = ver1;		 
-		 diamArr[1] = ver2;
-		 diamArr[2] = max;
+
+		diamArr[0] = ver1;		 
+		diamArr[1] = ver2;
+		diamArr[2] = max;
 		return diamArr;
 	}
 
@@ -273,42 +273,42 @@ public class Dijkstra {
 		for (int i = 0; i < vertices.length; i++) {
 			max = Double.NEGATIVE_INFINITY;
 			resetGraph(g);
-            computePaths(i);
+			computePaths(i);
 			for (int j = 0; j < vertices.length; j++) {
 
 				temp = vertices[j].dist;
-				 
+
 				if (temp > max) {
 					max = temp;
 					ver1 = j;
-					
+
 				}
 			}
-		 
+
 			maxRad.add(max);
 			maxRadIndex.add(ver1);
 		}
- 
+
 		resetGraph(g);
 		min = Double.POSITIVE_INFINITY;
-		 for (int i = 0; i < maxRad.size(); i++) {
+		for (int i = 0; i < maxRad.size(); i++) {
 			temp = maxRad.get(i);
 			if (temp < min){
 				min = temp;
 				ver1 = i;
-				
+
 			}
 		}
-		 
-		 radArr[0] = maxRadIndex.get((int) ver1);		 
-		 radArr[1] = min;
+
+		radArr[0] = maxRadIndex.get((int) ver1);		 
+		radArr[1] = min;
 		return radArr;
 	}
 
 	private int StringToInt(String s) {
 		return Integer.parseInt(s);
 	}
-	
+
 	public void BlackListShortPath(int num_of_queries,String blacklist, Graph g) {
 		String line=blacklist;
 		StringTokenizer st=new StringTokenizer(line); // Spliting the string
